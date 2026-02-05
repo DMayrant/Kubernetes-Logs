@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-web
+  name: nginx-web
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: nginx-web
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginx-web
+    spec:
+      containers:
+      - image: nginx:1.28.0
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: 
+          limits:
+            cpu: "250m"
+            memory: 256Mi
+          requests:
+            cpu: "125m"
+            memory: 128Mi
+        volumeMounts: 
+        - name: nginx-filesystem-storage
+          mountPath: /usr/share/nginx/data
+      volumes: 
+      - name: nginx-filesystem-storage
+        persistentVolumeClaim:
+          claimName: nginx-filesystem-pvc
