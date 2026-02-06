@@ -36,3 +36,4 @@ kubectl describe pod <pod> -n <namespace>
 kubectl logs deploy/<deployment> 
 kubectl get pods -A -o wide
 ```
+![image alt](https://github.com/DMayrant/Kubernetes-Logs/blob/main/Screenshot%202569-02-05%20at%2016.25.39.png?raw=true)
